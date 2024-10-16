@@ -1,0 +1,47 @@
+[
+  {
+    "model": "tracticeapi.song",
+    "pk": 1,
+    "fields": {
+      "title": "Gravity",
+      "artist": 1,
+      "description": "A soulful ballad by John Mayer."
+    }
+  },
+  {
+    "model": "tracticeapi.song",
+    "pk": 2,
+    "fields": {
+      "title": "Hello",
+      "artist": 2,
+      "description": "A powerful vocal performance by Adele."
+    }
+  },
+  {
+    "model": "tracticeapi.song",
+    "pk": 3,
+    "fields": {
+      "title": "Shape of You",
+      "artist": 3,
+      "description": "A chart-topping hit by Ed Sheeran."
+    }
+  },
+  {
+    "model": "tracticeapi.song",
+    "pk": 4,
+    "fields": {
+      "title": "Blank Space",
+      "artist": 4,
+      "description": "A pop anthem by Taylor Swift."
+    }
+  },
+  {
+    "model": "tracticeapi.song",
+    "pk": 5,
+    "fields": {
+      "title": "Uptown Funk",
+      "artist": 5,
+      "description": "A funky groove by Bruno Mars."
+    }
+  }
+]

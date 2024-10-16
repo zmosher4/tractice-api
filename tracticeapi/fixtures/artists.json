@@ -1,0 +1,42 @@
+[
+  {
+    "model": "tracticeapi.artist",
+    "pk": 1,
+    "fields": {
+      "name": "John Mayer",
+      "user": 1
+    }
+  },
+  {
+    "model": "tracticeapi.artist",
+    "pk": 2,
+    "fields": {
+      "name": "Adele",
+      "user": 2
+    }
+  },
+  {
+    "model": "tracticeapi.artist",
+    "pk": 3,
+    "fields": {
+      "name": "Ed Sheeran",
+      "user": 3
+    }
+  },
+  {
+    "model": "tracticeapi.artist",
+    "pk": 4,
+    "fields": {
+      "name": "Taylor Swift",
+      "user": 4
+    }
+  },
+  {
+    "model": "tracticeapi.artist",
+    "pk": 5,
+    "fields": {
+      "name": "Bruno Mars",
+      "user": 5
+    }
+  }
+]

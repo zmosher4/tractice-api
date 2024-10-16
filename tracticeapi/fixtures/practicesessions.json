@@ -1,0 +1,52 @@
+[
+  {
+    "model": "tracticeapi.practicesession",
+    "pk": 1,
+    "fields": {
+      "user": 1,
+      "session_date": "2024-01-10T14:00:00Z",
+      "show": 1,
+      "notes": "Focused on transitions."
+    }
+  },
+  {
+    "model": "tracticeapi.practicesession",
+    "pk": 2,
+    "fields": {
+      "user": 2,
+      "session_date": "2024-01-12T10:30:00Z",
+      "show": 2,
+      "notes": "Practiced the new songs."
+    }
+  },
+  {
+    "model": "tracticeapi.practicesession",
+    "pk": 3,
+    "fields": {
+      "user": 3,
+      "session_date": "2024-01-15T12:00:00Z",
+      "show": 3,
+      "notes": "Worked on guitar solos."
+    }
+  },
+  {
+    "model": "tracticeapi.practicesession",
+    "pk": 4,
+    "fields": {
+      "user": 4,
+      "session_date": "2024-01-18T16:00:00Z",
+      "show": 4,
+      "notes": "Polished vocal harmonies."
+    }
+  },
+  {
+    "model": "tracticeapi.practicesession",
+    "pk": 5,
+    "fields": {
+      "user": 5,
+      "session_date": "2024-01-20T18:30:00Z",
+      "show": 5,
+      "notes": "Reviewed the entire setlist."
+    }
+  }
+]

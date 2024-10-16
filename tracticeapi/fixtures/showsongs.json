@@ -1,0 +1,42 @@
+[
+  {
+    "model": "tracticeapi.showsong",
+    "pk": 1,
+    "fields": {
+      "song": 1,
+      "show": 1
+    }
+  },
+  {
+    "model": "tracticeapi.showsong",
+    "pk": 2,
+    "fields": {
+      "song": 2,
+      "show": 2
+    }
+  },
+  {
+    "model": "tracticeapi.showsong",
+    "pk": 3,
+    "fields": {
+      "song": 3,
+      "show": 3
+    }
+  },
+  {
+    "model": "tracticeapi.showsong",
+    "pk": 4,
+    "fields": {
+      "song": 4,
+      "show": 4
+    }
+  },
+  {
+    "model": "tracticeapi.showsong",
+    "pk": 5,
+    "fields": {
+      "song": 5,
+      "show": 5
+    }
+  }
+]

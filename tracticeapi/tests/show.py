@@ -1,10 +1,11 @@
 import json
+import datetime
 from rest_framework import status
 from rest_framework.test import APITestCase
 from tracticeapi.models import Show
 
 
-class PracticeSessionTests(APITestCase):
+class ShowTests(APITestCase):
     def setUp(self) -> None:
         """
         Create a new account and create sample category
@@ -25,41 +26,26 @@ class PracticeSessionTests(APITestCase):
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
 
-    def test_create_practice_session(self):
-        show = Show.objects.create(
-            description="Acoustic Night",
-            performance_date="2024-02-10T19:00:00Z",
-            user_id=1,  # Use a valid user ID from your database
-        )
-        url = '/practicesessions'
+    def test_create_show(self):
+        url = '/shows'
         data = {
-            "session_date": "2013-01-11T14:00:00Z",
-            "show_id": 1,
-            "notes": "learn two more songs",
+            "description": "Jam Out!",
+            "performance_date": "2024-04-20T19:00:00Z",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         response = self.client.post(url, data, format='json')
         json_response = json.loads(response.content)
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
-        self.assertEqual(json_response['session_date'], "2013-01-11T14:00:00Z")
-        self.assertEqual(json_response['notes'], "learn two more songs")
+        self.assertEqual(json_response['description'], "Jam Out!")
+        self.assertEqual(json_response['performance_date'], "2024-04-20T19:00:00Z")
 
-        self.assertIn('show', json_response)
-        self.assertEqual(json_response['show']['id'], 1)
-        self.assertEqual(json_response['show']['description'], "Acoustic Night")
-        self.assertEqual(
-            json_response['show']['performance_date'], "2024-02-10T19:00:00Z"
-        )
-
-    def test_update_practice_session(self):
-        self.test_create_practice_session()
-
-        url = '/practicesessions/1'
+    def test_update_show(self):
+        self.test_create_show()
+        url = '/shows/1'
         data = {
-            "session_date": "2024-01-10T14:00:00Z",
-            "show_id": 1,
-            "notes": "Focused on transitions!",
+            "description": "Jam In.",
+            "performance_date": "2024-04-22T19:00:00Z",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
         put_response = self.client.put(url, data, format='json')
@@ -67,8 +53,5 @@ class PracticeSessionTests(APITestCase):
 
         get_response = self.client.get(url, data, format='json')
         json_response = json.loads(get_response.content)
-        self.assertEqual(get_response.status_code, status.HTTP_200_OK)
-        self.assertEqual(json_response['session_date'], "2024-01-10T14:00:00Z")
-        self.assertEqual(json_response['notes'], "Focused on transitions!")
-        self.assertIn('show', json_response)
-        self.assertEqual(json_response['show']['id'], 1)
+        self.assertEqual(json_response['description'], "Jam In.")
+        self.assertEqual(json_response['performance_date'], "2024-04-22T19:00:00Z")

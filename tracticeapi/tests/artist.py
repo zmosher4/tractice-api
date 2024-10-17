@@ -35,3 +35,16 @@ class ArtistTests(APITestCase):
 
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
         self.assertEqual(json_response['name'], "Nate Smith")
+
+    def test_update_artist(self):
+        self.test_create_artist()
+        url = '/artists/1'
+        data = {"name": "Jojo Mayer"}
+
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        put_response = self.client.put(url, data, format='json')
+        self.assertEqual(put_response.status_code, status.HTTP_204_NO_CONTENT)
+
+        get_response = self.client.get(url, format='json')
+        json_response = json.loads(get_response.content)
+        self.assertEqual(json_response['name'], "Jojo Mayer")

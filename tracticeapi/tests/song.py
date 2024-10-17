@@ -43,3 +43,24 @@ class SongTests(APITestCase):
 
         self.assertIn('artist', json_response)
         self.assertEqual(json_response['artist']['id'], 1)
+
+    def test_update_song(self):
+        self.test_create_song()
+
+        url = '/songs/1'
+        data = {
+            "title": "Stringy",
+            "artist_id": 1,
+            "description": "Very vocal, very drums!",
+        }
+        self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
+        put_response = self.client.put(url, data, format='json')
+        self.assertEqual(put_response.status_code, status.HTTP_204_NO_CONTENT)
+
+        get_response = self.client.get(url, format='json')
+        json_response = json.loads(get_response.content)
+        self.assertEqual(json_response['title'], "Stringy")
+        self.assertEqual(json_response['description'], "Very vocal, very drums!")
+
+        self.assertIn('artist', json_response)
+        self.assertEqual(json_response['artist']['id'], 1)

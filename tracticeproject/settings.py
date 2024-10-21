@@ -136,7 +136,5 @@ REST_FRAMEWORK = {
     ],
 }
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:3000',  # Your Next.js frontend URL
+    'http://localhost:5173',  # Your Next.js frontend URL
 ]
-# In your Django settings or wherever you're handling CORS
-CORS_ALLOW_CREDENTIALS = True

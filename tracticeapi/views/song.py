@@ -1,15 +1,13 @@
 from rest_framework import viewsets, serializers, status
-from tracticeapi.models import Song, Artist
-from .artist import ArtistSerializer
+from tracticeapi.models import Song
 from rest_framework.response import Response
 
 
 class SongSerializer(serializers.ModelSerializer):
-    artist = ArtistSerializer()
 
     class Meta:
         model = Song
-        fields = ['id', 'title', 'artist', 'description']
+        fields = ['id', 'title', 'description']
 
 
 class SongViewSet(viewsets.ModelViewSet):
@@ -20,7 +18,6 @@ class SongViewSet(viewsets.ModelViewSet):
     def create(self, request):
         song = Song()
         song.title = request.data['title']
-        song.artist = Artist.objects.get(pk=request.data['artist_id'])
         song.description = request.data['description']
         song.save()
 
@@ -30,7 +27,6 @@ class SongViewSet(viewsets.ModelViewSet):
     def update(self, request, pk=None):
         song = Song.objects.get(pk=pk)
         song.title = request.data['title']
-        song.artist = Artist.objects.get(pk=request.data['artist_id'])
         song.description = request.data['description']
         song.save()
 

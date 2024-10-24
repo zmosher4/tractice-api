@@ -1,7 +1,7 @@
 import json
 from rest_framework import status
 from rest_framework.test import APITestCase
-from tracticeapi.models import Show, Song, Artist
+from tracticeapi.models import Show, Song
 
 
 class ShowSongTests(APITestCase):
@@ -26,15 +26,14 @@ class ShowSongTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
 
     def test_create_show_song(self):
-        artist = Artist.objects.create(name="Benny Greb", user_id=1)
 
         show = Show.objects.create(
             description="Acoustic Night",
             performance_date="2024-02-10T19:00:00Z",
             user_id=1,  # Use a valid user ID from your database
         )
-        song1 = Song.objects.create(title="Go", artist_id=1, description="Dreamy.")
-        song2 = Song.objects.create(title="Op", artist_id=1, description="Sad.")
+        song1 = Song.objects.create(title="Go", description="Dreamy.")
+        song2 = Song.objects.create(title="Op", description="Sad.")
 
         url = '/showsongs'
         data = {"show_id": 1, "song_id": 1}

@@ -1,7 +1,8 @@
 import json
 from rest_framework import status
 from rest_framework.test import APITestCase
-from tracticeapi.models import Show
+from tracticeapi.models import Show, Artist
+from django.contrib.auth.models import User
 
 
 class ShowTests(APITestCase):
@@ -19,6 +20,13 @@ class ShowTests(APITestCase):
             "first_name": "Steve",
             "last_name": "Brownlee",
         }
+        # Create a test user
+        self.user = User.objects.create_user(
+            username='testuser', password='testpassword'
+        )
+        # Create an artist associated with that user
+        self.artist = Artist.objects.create(name="Test Artist", user=self.user)
+
         response = self.client.post(url, data, format='json')
         json_response = json.loads(response.content)
         self.token = json_response["token"]
@@ -29,6 +37,7 @@ class ShowTests(APITestCase):
         url = '/shows'
         data = {
             "description": "Jam Out!",
+            "artist_id": self.artist.id,
             "performance_date": "2024-04-20T19:00:00Z",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
@@ -44,6 +53,7 @@ class ShowTests(APITestCase):
         url = '/shows/1'
         data = {
             "description": "Jam In.",
+            "artist_id": self.artist.id,
             "performance_date": "2024-04-22T19:00:00Z",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)

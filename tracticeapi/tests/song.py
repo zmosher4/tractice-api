@@ -26,11 +26,9 @@ class SongTests(APITestCase):
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
 
     def test_create_song(self):
-        artist = Artist.objects.create(name="Benny Greb", user_id=1)
         url = '/songs'
         data = {
             "title": "Strings",
-            "artist_id": 1,
             "description": "Very vocal, very drums.",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
@@ -41,16 +39,12 @@ class SongTests(APITestCase):
         self.assertEqual(json_response['title'], "Strings")
         self.assertEqual(json_response['description'], "Very vocal, very drums.")
 
-        self.assertIn('artist', json_response)
-        self.assertEqual(json_response['artist']['id'], 1)
-
     def test_update_song(self):
         self.test_create_song()
 
         url = '/songs/1'
         data = {
             "title": "Stringy",
-            "artist_id": 1,
             "description": "Very vocal, very drums!",
         }
         self.client.credentials(HTTP_AUTHORIZATION='Token ' + self.token)
@@ -61,6 +55,3 @@ class SongTests(APITestCase):
         json_response = json.loads(get_response.content)
         self.assertEqual(json_response['title'], "Stringy")
         self.assertEqual(json_response['description'], "Very vocal, very drums!")
-
-        self.assertIn('artist', json_response)
-        self.assertEqual(json_response['artist']['id'], 1)

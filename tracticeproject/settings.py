@@ -161,3 +161,26 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", '').split(",")
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False")
+# settings.py
+
+# Database timeout settings
+DATABASES = {
+    'default': {
+        # ... your existing database settings ...
+        'CONN_MAX_AGE': 60,  # Connection lifetime in seconds
+        'OPTIONS': {
+            'connect_timeout': 10,
+            'timeout': 20,
+        },
+    }
+}
+
+# DRF settings
+REST_FRAMEWORK = {
+    # ... your existing DRF settings ...
+    'DEFAULT_THROTTLE_CLASSES': [],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': None,
+        'anon': None,
+    },
+}

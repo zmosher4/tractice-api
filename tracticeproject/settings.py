@@ -163,3 +163,25 @@ SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", '').split(",")
 DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False")
+# Add to settings.py temporarily for debugging
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:5173',
+    'https://tractice-client-xwemi.ondigitalocean.app',
+)
+
+# Log CORS issues
+LOGGING = {
+    'version': 1,
+    'disable_existing_loggers': False,
+    'handlers': {
+        'console': {
+            'class': 'logging.StreamHandler',
+        },
+    },
+    'loggers': {
+        'corsheaders': {
+            'handlers': ['console'],
+            'level': 'DEBUG',
+        },
+    },
+}

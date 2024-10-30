@@ -32,6 +32,7 @@ CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,7 +42,6 @@ INSTALLED_APPS = [
     'rest_framework',
     'tracticeapi',
     'rest_framework.authtoken',
-    'corsheaders',
 ]
 
 MIDDLEWARE = [

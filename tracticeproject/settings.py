@@ -27,6 +27,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # ALLOWED_HOSTS = []
 CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
+CORS_EXPOSE_HEADERS = ['Content-Type', 'Authorization']
 
 
 # Application definition
@@ -153,6 +154,7 @@ REST_FRAMEWORK = {
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',
     'https://tractice-client-xwemi.ondigitalocean.app',
+    'https://tractice-app-fjll5.ondigitalocean.app',
 ]
 import os
 from django.core.management.utils import get_random_secret_key

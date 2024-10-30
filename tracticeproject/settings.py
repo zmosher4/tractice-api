@@ -97,6 +97,11 @@ DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
+        'CONN_MAX_AGE': 60,  # Connection lifetime in seconds
+        'OPTIONS': {
+            'connect_timeout': 10,
+            'timeout': 20,
+        },
     }
 }
 
@@ -149,6 +154,11 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': [
         'rest_framework.permissions.IsAuthenticated',  # Ensure all views require authentication
     ],
+    'DEFAULT_THROTTLE_CLASSES': [],
+    'DEFAULT_THROTTLE_RATES': {
+        'user': None,
+        'anon': None,
+    },
 }
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:5173',

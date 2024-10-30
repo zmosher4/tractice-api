@@ -98,10 +98,7 @@ DATABASES = {
         "ENGINE": "django.db.backends.sqlite3",
         "NAME": BASE_DIR / "db.sqlite3",
         'CONN_MAX_AGE': 60,  # Connection lifetime in seconds
-        'OPTIONS': {
-            'connect_timeout': 10,
-            'timeout': 20,
-        },
+        'TIMEOUT': 20,
     }
 }
 

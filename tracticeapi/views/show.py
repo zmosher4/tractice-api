@@ -3,6 +3,7 @@ from tracticeapi.models import Show, Artist
 from .user import UserSerializer
 from .artist import ArtistSerializer
 from rest_framework.response import Response
+import logging
 
 
 class ShowSerializer(serializers.ModelSerializer):
@@ -32,12 +33,34 @@ class ShowViewSet(viewsets.ModelViewSet):
         return Response(serializer.data, status=status.HTTP_201_CREATED)
 
     def update(self, request, pk=None):
-        show = Show.objects.get(pk=pk)
-        show.description = request.data['description']
-        show.performance_date = request.data['performance_date']
-        show.artist = Artist.objects.get(pk=request.data['artist_id'])
+        logger = logging.getLogger(__name__)
 
-        show.user = request.user
-        show.save()
+        logger.info(f"Starting update for show {pk}")
+        logger.info(f"Request data: {request.data}")
 
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
+        try:
+            show = Show.objects.get(pk=pk)
+            logger.info(f"Found show {pk}")
+
+            show.description = request.data.get('description', show.description)
+            show.performance_date = request.data.get(
+                'performance_date', show.performance_date
+            )
+
+            if 'artist_id' in request.data:
+                artist = Artist.objects.get(pk=request.data['artist_id'])
+                show.artist = artist
+                logger.info(f"Updated artist to {artist.id}")
+
+            show.user = request.user
+            logger.info("About to save show")
+            show.save()
+            logger.info(f"Successfully saved show {pk}")
+
+            return Response({}, status=status.HTTP_204_NO_CONTENT)
+
+        except Exception as e:
+            logger.error(f"Error updating show {pk}: {str(e)}")
+            return Response(
+                {'error': str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR
+            )

@@ -20,12 +20,12 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/5.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = "django-insecure-hx*9-+7ku^k+9dvwj07a2ox&=*fbu+%&p!gf8%2rd_duhlco)&"
+# SECRET_KEY = "django-insecure-hx*9-+7ku^k+9dvwj07a2ox&=*fbu+%&p!gf8%2rd_duhlco)&"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+# DEBUG = True
 
-ALLOWED_HOSTS = []
+# ALLOWED_HOSTS = []
 
 
 # Application definition
@@ -136,5 +136,13 @@ REST_FRAMEWORK = {
     ],
 }
 CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',  # Your Next.js frontend URL
+    'http://localhost:5173',
+    'https://tractice-client-xwemi.ondigitalocean.app',
 ]
+import os
+from django.core.management.utils import get_random_secret_key
+
+SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
+DEBUG = os.getenv("DEBUG", "False")
+ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", '').split(",")
+DEVELOPMENT_MODE = os.getenv("DEVELOPMENT_MODE", "False")

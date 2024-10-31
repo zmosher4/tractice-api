@@ -57,7 +57,7 @@ class ShowViewSet(viewsets.ModelViewSet):
             show.save()
             logger.info(f"Successfully saved show {pk}")
 
-            return Response({}, status=status.HTTP_204_NO_CONTENT)
+            return Response(None, status=status.HTTP_204_NO_CONTENT)
 
         except Exception as e:
             logger.error(f"Error updating show {pk}: {str(e)}")

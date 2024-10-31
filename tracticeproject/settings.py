@@ -168,30 +168,11 @@ from django.core.management.utils import get_random_secret_key
 SECRET_KEY = os.getenv("DJANGO_SECRET_KEY", get_random_secret_key())
 DEBUG = os.getenv("DEBUG", "False")
 ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", '').split(",")
-DEBUG = os.getenv("DEBUG", "False").lower() == "true"
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
-# Allow non-standard HTTP methods
-CORS_ALLOW_ALL_METHODS = True
-LOGGING = {
-    'version': 1,
-    'disable_existing_loggers': False,
-    'handlers': {
-        'console': {
-            'class': 'logging.StreamHandler',
-        },
-    },
-    'loggers': {
-        'django.request': {
-            'handlers': ['console'],
-            'level': 'DEBUG',  # Change to INFO in production
-            'propagate': True,
-        },
-        'corsheaders': {
-            'handlers': ['console'],
-            'level': 'DEBUG',
-            'propagate': True,
-        },
-    },
-}
+CORS_ORIGIN_WHITELIST = (
+    'http://localhost:5173',
+    'http://127.0.0.1:8000',
+    'https://tractice-client-xwemi.ondigitalocean.app',
+)

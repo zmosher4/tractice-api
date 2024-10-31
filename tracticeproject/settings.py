@@ -33,7 +33,6 @@ CORS_ALLOW_METHODS = ["GET", "POST", "PUT", "PATCH", "DELETE", "OPTIONS"]
 # Application definition
 
 INSTALLED_APPS = [
-    'corsheaders',
     "django.contrib.admin",
     "django.contrib.auth",
     "django.contrib.contenttypes",
@@ -41,6 +40,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     'rest_framework',
+    'corsheaders',
     'tracticeapi',
     'rest_framework.authtoken',
 ]
@@ -158,11 +158,11 @@ REST_FRAMEWORK = {
         'anon': None,
     },
 }
-CORS_ALLOWED_ORIGINS = [
-    'http://localhost:5173',
-    'https://tractice-client-xwemi.ondigitalocean.app',
-    'https://tractice-app-fjll5.ondigitalocean.app',
-]
+# CORS_ALLOWED_ORIGINS = [
+#     'http://localhost:5173',
+#     'https://tractice-client-xwemi.ondigitalocean.app',
+#     'https://tractice-app-fjll5.ondigitalocean.app',
+# ]
 import os
 from django.core.management.utils import get_random_secret_key
 
@@ -172,8 +172,9 @@ ALLOWED_HOSTS = os.getenv("DJANGO_ALLOWED_HOSTS", '').split(",")
 CORS_EXPOSE_HEADERS = ['Content-Type', 'X-CSRFToken']
 CORS_PREFLIGHT_MAX_AGE = 86400  # 24 hours
 
-CORS_ORIGIN_WHITELIST = (
-    'http://localhost:5173',
-    'http://127.0.0.1:8000',
-    'https://tractice-client-xwemi.ondigitalocean.app',
-)
+# CORS_ORIGIN_WHITELIST = (
+#     'http://localhost:5173',
+#     'http://127.0.0.1:8000',
+#     'https://tractice-client-xwemi.ondigitalocean.app',
+# )
+CORS_ALLOW_ALL_ORIGINS = True

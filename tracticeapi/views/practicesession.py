@@ -42,4 +42,4 @@ class PracticeSessionViewSet(viewsets.ModelViewSet):
         practice_session.user = request.user
         practice_session.save()
 
-        return Response({}, status=status.HTTP_204_NO_CONTENT)
+        return Response(None, status=status.HTTP_204_NO_CONTENT)

@@ -1,10 +1,12 @@
 from django.conf import settings
-from django.urls import include, path
+from django.urls import include, path, re_path
 from django.conf.urls.static import static
 from rest_framework import routers
 from rest_framework.authtoken.views import obtain_auth_token
 from tracticeapi.models import *
 from tracticeapi.views import *
+from django.views.generic import TemplateView
+
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'artists', ArtistViewSet, 'artist')
@@ -18,4 +20,5 @@ urlpatterns = [
     path("login", login_user),
     path("api-token-auth", obtain_auth_token),
     path("api-auth", include("rest_framework.urls", namespace="rest_framework")),
+    re_path(r'^.*', TemplateView.as_view(template_name='index.html')),
 ]

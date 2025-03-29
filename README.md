@@ -1,6 +1,6 @@
 # Tractice (Track + Practice)
 
-This is the server side repository made with Django. The client code is in a seperate repository that can be viewed [here](https://github.com/zmosher4/tractice_client)
+This is the server side repository made with Django. The client code is in a seperate repository that can be viewed [here](https://github.com/zmosher4/tractice_client).
 
 I made this project, as a working musician, for people like myself to use to keep track of their upcoming shows and schedule time to practice. This is a web application that allows users to add upcoming shows (or performances), into a calendar. Once a user has added a show, they can then add practice sessions that are tied to specific shows. Users can add songs to the set list that they need to practice in these practice sessions, and keep notes here on what they will need to prepare for a performance.
 

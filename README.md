@@ -15,5 +15,5 @@ source venv/bin/activate  # On macOS/Linux
 venv\Scripts\activate  # On Windows
 pip install -r requirements.txt
 ```
-4. To run migrations and fixtures, run `./seed_data.sh`.
+4. To run migrations and load fixtures, run `./seed_data.sh`.
 5. Start the development server with `python manage.py runserver`.
